@@ -1,0 +1,4 @@
+one:
+  id: 1
+  email: "email@hotmail.com"
+  encrypted_password: "$2a$10$ZU0x7nDXA1EKbUAjwKTCwegV/yfddZkvfKWEa9/arb5pBQuy/1oFu"

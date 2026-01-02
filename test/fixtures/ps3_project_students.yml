@@ -1,0 +1,13 @@
+# test/fixtures/ps3_project_students.yml
+
+alice_in_soi:
+  ps3_project: one
+  ps3_student: alice
+
+bob_in_soi:
+  ps3_project: one
+  ps3_student: bob
+
+alice_in_lanka:
+  ps3_project: two
+  ps3_student: alice

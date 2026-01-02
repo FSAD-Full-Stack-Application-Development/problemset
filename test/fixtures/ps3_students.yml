@@ -1,0 +1,11 @@
+alice:
+  studentid: S001
+  name: Alice Johnson
+
+bob:
+  studentid: S002
+  name: Bob Smith
+
+charlie:
+  studentid: S003
+  name: Charlie Brown

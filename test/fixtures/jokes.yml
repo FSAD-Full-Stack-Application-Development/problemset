@@ -1,0 +1,16 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  author_name: "Tech Humor Pro"
+  category: "Programming"
+  quote: "Why do programmers prefer dark mode? Because light attracts bugs!"
+
+two:
+  author_name: "Code Comedy"
+  category: "AI"
+  quote: "An AI walked into a bar. The bartender said, 'Sorry, we don't serve your type here.' The AI replied, 'That's discriminatory learning!'"
+
+three:
+  author_name: "DevOps Jokes"
+  category: "DevOps"
+  quote: "How many DevOps engineers does it take to change a lightbulb? None, that's a hardware problem."
