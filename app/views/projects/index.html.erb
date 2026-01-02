@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Projects - Team Yolanda_Sake</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #a8e6cf 0%, #ffd3a5 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #88c999 0%, #ffb347 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .main-title {
+            font-size: 2.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        .nav-link {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 6px;
+            margin-top: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        .content {
+            padding: 40px 30px;
+        }
+        .section-title {
+            text-align: center;
+            color: #2d5016;
+            margin-bottom: 30px;
+            font-size: 1.8em;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        .project-card {
+            border: 2px solid #e8f5e8;
+            border-radius: 12px;
+            padding: 25px;
+            background: linear-gradient(135deg, #f8fff8 0%, #fffaf7 100%);
+            box-shadow: 0 3px 10px rgba(136, 201, 153, 0.1);
+            transition: all 0.3s ease;
+        }
+        .project-card:hover {
+            border-color: #88c999;
+            box-shadow: 0 8px 25px rgba(136, 201, 153, 0.2);
+            transform: translateY(-3px);
+        }
+        .project-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #88c999, #ffb347);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+        .project-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #2d5016;
+            margin-bottom: 15px;
+        }
+        .project-description {
+            color: #5a6b47;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .project-tech {
+            background: #f0f7f0;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+        .tech-label {
+            font-weight: bold;
+            color: #2d5016;
+            margin-right: 8px;
+        }
+        .tech-tags {
+            color: #667eea;
+        }
+        .access-link {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #88c999, #ffb347);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+        .access-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(136, 201, 153, 0.4);
+            background: linear-gradient(135deg, #76b887, #e6a034);
+        }
+        .footer {
+            background: linear-gradient(135deg, #e8f5e8 0%, #fff2e6 100%);
+            padding: 20px;
+            text-align: center;
+            color: #5a6b47;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="main-title">📊 All Projects Overview</div>
+            <div class="subtitle">Team Yolanda_Sake - FSAD Course</div>
+            <%= link_to "← Back to Main Page", root_path, class: "nav-link" %>
+        </div>
+        
+        <div class="content">
+            <h2 class="section-title">Problem Sets & Solutions</h2>
+            
+            <div class="projects-grid">
+                <!-- Problem Set 1 -->
+                <div class="project-card">
+                    <div class="project-number">Problem Set 1</div>
+                    <div class="project-title">🤖 AI News Aggregator</div>
+                    <div class="project-description">
+                        A full-stack web application that aggregates and displays AI-related news from multiple sources including MIT Technology Review and VentureBeat. Features real-time updates and live UTC clock.
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-label">Technologies:</span>
+                        <span class="tech-tags">Rails, Nokogiri, Web Scraping, HTML/CSS</span>
+                    </div>
+                    <div style="text-align: center;">
+                        <%= link_to "🔗 View Project", ps1_path, class: "access-link" %>
+                    </div>
+                </div>
+                
+                <!-- Problem Set 2 -->
+                <div class="project-card">
+                    <div class="project-number">Problem Set 2</div>
+                    <div class="project-title">😂 Tech Jokes Database</div>
+                    <div class="project-description">
+                        SQL-driven web application with full CRUD operations for managing tech jokes. Includes search functionality, pagination with Kaminari, and database architecture visualization.
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-label">Technologies:</span>
+                        <span class="tech-tags">Rails, PostgreSQL, SQL, Kaminari, CRUD Operations</span>
+                    </div>
+                    <div style="text-align: center;">
+                        <%= link_to "🔗 View Project", ps2_path, class: "access-link" %>
+                    </div>
+                </div>
+                
+                <!-- Problem Set 3 -->
+                <div class="project-card">
+                    <div class="project-number">Problem Set 3</div>
+                    <div class="project-title">🎓 Project Tracker</div>
+                    <div class="project-description">
+                        User Acceptance Testing platform with BDD using Cucumber. Features Devise authentication, project and student management, and comprehensive test coverage with SimpleCov.
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-label">Technologies:</span>
+                        <span class="tech-tags">Rails, Devise, Cucumber, BDD, SimpleCov, RSpec</span>
+                    </div>
+                    <div style="text-align: center;">
+                        <%= link_to "🔗 View Project", ps3_path, class: "access-link" %>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; padding: 30px 0;">
+                <h3 style="color: #2d5016; margin-bottom: 15px;">👥 Team Members</h3>
+                <p style="color: #5a6b47; font-size: 1.1em;">
+                    Aye Khin Khin Hpone (Yolanda Lim) - 125970<br>
+                    Saugat Shakya - 125986
+                </p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            Generated at <%= Time.current.strftime("%Y-%m-%d %H:%M:%S") %> | 
+            Rails Environment: <%= Rails.env.upcase %> | 
+            Ruby Version: <%= RUBY_VERSION %>
+        </div>
+    </div>
+</body>
+</html>

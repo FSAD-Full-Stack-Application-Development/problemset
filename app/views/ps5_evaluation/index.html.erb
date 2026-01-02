@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #a8e6cf 0%, #ffd3a5 100%);
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: white;
+      min-height: 100vh;
+    }
+    .header {
+      background: linear-gradient(135deg, #88c999 0%, #ffb347 100%);
+      color: white;
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .header h1 {
+      margin: 0 0 10px 0;
+      font-size: 2.5em;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    .header p {
+      margin: 5px 0;
+      font-size: 1.1em;
+      opacity: 0.95;
+    }
+    .nav-bar {
+      background: #f8f9fa;
+      padding: 15px 40px;
+      border-bottom: 2px solid #e8f5e8;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .nav-bar a {
+      color: #2d5016;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .nav-bar a:hover {
+      background: #88c999;
+      color: white;
+    }
+    .content {
+      padding: 30px;
+    }
+    .intro-section {
+      background: #fafafa;
+      border-radius: 12px;
+      padding: 25px 35px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border-left: 4px solid #88c999;
+    }
+    .intro-section h2 {
+      color: #2d5016;
+      font-size: 1.5em;
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+    .intro-section h3 {
+      color: #2d5016;
+      font-size: 1.2em;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+    .intro-section p {
+      color: #555;
+      margin: 10px 0;
+      font-size: 1.05em;
+      line-height: 1.7;
+    }
+    .intro-section ul {
+      color: #555;
+      margin: 10px 0;
+      padding-left: 30px;
+      line-height: 1.8;
+    }
+    .intro-section li {
+      margin: 8px 0;
+    }
+    .doc-container {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border: 2px solid #e8f5e8;
+    }
+    .doc-frame {
+      width: 100%;
+      height: 900px;
+      border: none;
+      border-radius: 8px;
+    }
+    .highlight-box {
+      background: linear-gradient(135deg, #e8f5e9 0%, #fff3e0 100%);
+      padding: 15px 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+      border-left: 4px solid #ffb347;
+    }
+    .task-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #88c999, #76b887);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.85em;
+      font-weight: 600;
+      margin-right: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Problem Set 5: User Evaluation</h1>
+      <p>Peer Review & User Feedback Analysis</p>
+      <p style="font-size: 0.95em; margin-top: 10px;">Team Yolanda_Sake | FSAD AIT 2025</p>
+    </div>
+
+    <div class="nav-bar">
+      <%= link_to "← Back to Home", root_path %>
+      <%= link_to "📄 Open in Google Docs", "https://docs.google.com/document/d/1-krgxhjsXSOGD2-pEh1TjZAkv2elUm_9i10FWwtYztk/edit?usp=sharing", target: "_blank" %>
+    </div>
+
+    <div class="content">
+      <!-- Embedded Document Preview -->
+      <div class="doc-container" style="max-width: 1100px; margin: 0 auto;">
+        <h3 style="color: #2d5016; margin-bottom: 20px; font-size: 1.3em; text-align: center;">📋 User Evaluation Report</h3>
+        <iframe 
+          src="https://docs.google.com/document/d/1-krgxhjsXSOGD2-pEh1TjZAkv2elUm_9i10FWwtYztk/preview" 
+          class="doc-frame"
+          allow="autoplay"
+        ></iframe>
+      </div>
+
+      <!-- About PS5 -->
+      <div class="intro-section" style="margin-top: 30px;">
+        <h2>🎯 About This Assignment</h2>
+        <p>
+          In this problem set, we performed a comprehensive <strong>user evaluation</strong>. 
+          This evaluation includes peer reviews of other teams' projects and feedback from our target user community.
+        </p>
+        <p>Aye Khin Khin Hpone (Yolanda Lim_125970) | Saugat Shakya (125986)
+        </p>
+        
+        <h3>📝 Assignment Components</h3>
+        
+        <p><span class="task-badge">Task 1</span> <strong>Peer Project Reviews</strong></p>
+        <ul>
+          <li>Toured and evaluated <strong>two other teams' projects</strong></li>
+          <li>Analyzed system goals, data models, and authentication mechanisms</li>
+          <li>Registered as users and tested content authoring features</li>
+          <li>Provided <strong>constructive criticism</strong> focusing on usability and improvements</li>
+          <li>Checked data model sufficiency and system navigation</li>
+        </ul>
+
+        <p><span class="task-badge">Task 2</span> <strong>User Feedback Collection</strong></p>
+        <ul>
+          <li>Obtained feedback from <strong>target user community members</strong> outside our class</li>
+          <li>Had users test registration and content management features</li>
+          <li>Recorded user experiences and suggestions for improvements</li>
+          <li>Documented actual user needs and system usability</li>
+        </ul>
+
+        <p><span class="task-badge">Task 3</span> <strong>Summary & Action Plan</strong></p>
+        <ul>
+          <li>Summarized all evaluated comments received from peers and users</li>
+          <li>Developed <strong>action plan</strong> for addressing feedback</li>
+          <li>Prioritized improvements for next system version</li>
+        </ul>
+
+        <p><span class="task-badge">Individual</span> <strong>Contribution Documentation</strong></p>
+        <ul>
+          <li>Clear description of <strong>Yolanda and Sake's contributions</strong> to full-stack project</li>
+          <li>Specific tasks completed by each team member</li>
+          <li>Challenges encountered and solutions implemented</li>
+        </ul>
+        
+        <h3>🔍 Evaluation Approach</h3>
+        <p>
+          Our evaluation process focused on providing <strong>constructive feedback</strong> rather than superficial criticism. 
+          We examined each system's functionality, user experience, data architecture, and overall design. The goal was to help 
+          other teams improve their systems while gaining insights for enhancing our own Collabsphere platform.
+        </p>
+
+        <div class="highlight-box">
+          <p style="margin: 0; font-size: 0.95em; color: #555;">
+            <strong style="color: #2d5016;">💡 Document Contents:</strong> Click "Open in Google Docs" above to view our 
+            complete evaluation including peer reviews, user feedback transcripts, criticism summary, action plan, and 
+            individual contribution details.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

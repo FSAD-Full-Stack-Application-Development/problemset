@@ -1,0 +1,44 @@
+<div style="min-height: 100vh; background: linear-gradient(135deg, #a8e6cf 0%, #ffd3a5 100%);">
+  <%= render 'navigation' %>
+
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 1rem 2rem 1rem;">
+    <% if notice %>
+      <div style="background: #d4edda; color: #155724; padding: 1rem; border-radius: 6px; margin-bottom: 1rem; border: 1px solid #c3e6cb;">
+      <%= notice %>
+    </div>
+  <% end %>
+
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+    <h1 style="color: #2d5016; margin: 0;">📂 Projects</h1>
+    <%= link_to "➕ New Project", new_ps3_project_path, style: "background: linear-gradient(135deg, #88c999 0%, #ffb347 100%); color: white; padding: 0.75rem 1.5rem; text-decoration: none; border-radius: 6px; font-weight: 500; box-shadow: 0 2px 8px rgba(136, 201, 153, 0.3);" %>
+  </div>
+
+  <% if @ps3_projects.any? %>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">
+      <% @ps3_projects.each do |ps3_project| %>
+        <div style="background: white; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: all 0.3s; cursor: pointer;" onmouseover="this.style.boxShadow='0 4px 16px rgba(136, 201, 153, 0.3)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'; this.style.transform='translateY(0)';">
+          <h3 style="margin: 0 0 1rem 0; color: #2d5016;">
+            <%= link_to ps3_project.name, ps3_project, style: "color: #667eea; text-decoration: none; font-size: 1.25rem;" %>
+          </h3>
+          <p style="color: #666; margin: 0.5rem 0; font-size: 0.9rem;">
+            <strong>🔗 URL:</strong><br/>
+            <a href="<%= ps3_project.url %>" target="_blank" style="color: #88c999; word-break: break-all;"><%= ps3_project.url %></a>
+          </p>
+          <p style="color: #666; margin: 0.5rem 0; font-size: 0.9rem;">
+            <strong>👥 Students:</strong> <%= ps3_project.ps3_students.count %>
+          </p>
+          <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e0e0e0; display: flex; gap: 0.5rem;">
+            <%= link_to "View", ps3_project, style: "color: #88c999; text-decoration: none; font-size: 0.9rem; font-weight: 500;" %>
+            <span style="color: #ccc;">|</span>
+            <%= link_to "Edit", edit_ps3_project_path(ps3_project), style: "color: #ffb347; text-decoration: none; font-size: 0.9rem; font-weight: 500;" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div style="text-align: center; padding: 3rem; background: #f8f9fa; border-radius: 8px; border: 2px dashed #dee2e6;">
+      <p style="color: #666; font-size: 1.1rem; margin: 0;">📭 No projects yet. Create your first project!</p>
+    </div>
+  <% end %>
+  </div>
+</div>

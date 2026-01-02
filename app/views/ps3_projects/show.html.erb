@@ -1,0 +1,72 @@
+<div style="min-height: 100vh; background: linear-gradient(135deg, #a8e6cf 0%, #ffd3a5 100%);">
+  <%= render 'navigation' %>
+
+  <div style="max-width: 900px; margin: 0 auto; padding: 0 2rem 2rem 2rem;">
+  <% if notice %>
+    <div style="background: #d4edda; color: #155724; padding: 1rem; border-radius: 6px; margin-bottom: 1rem; border: 1px solid #c3e6cb;">
+      <%= notice %>
+    </div>
+  <% end %>
+  
+  <% if alert %>
+    <div style="background: #f8d7da; color: #721c24; padding: 1rem; border-radius: 6px; margin-bottom: 1rem; border: 1px solid #f5c6cb;">
+      <%= alert %>
+    </div>
+  <% end %>
+
+  <!-- Project Details Card -->
+  <div style="background: white; border-radius: 8px; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+    <h1 style="color: #2d5016; margin: 0 0 1rem 0;"><%= @ps3_project.name %></h1>
+    <p style="color: #666; margin: 0.5rem 0;">
+      <strong>🔗 Project URL:</strong><br/>
+      <a href="<%= @ps3_project.url %>" target="_blank" style="color: #88c999; word-break: break-all;"><%= @ps3_project.url %></a>
+    </p>
+  </div>
+
+  <!-- Students Section -->
+  <div style="background: white; border-radius: 8px; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+    <h2>Students</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Student ID</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @ps3_project.ps3_students.each do |student| %>
+          <tr>
+            <td><%= student.studentid %></td>
+            <td><%= student.name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <br/>
+    
+    <h2>Add a student:</h2>
+    <%= form_for([@ps3_project, @ps3_project.ps3_students.build]) do |f| %>
+      <div class="field">
+        <%= f.label :studentid %>
+        <br/>
+        <%= f.text_field :studentid %>
+      </div>
+      <div class="field">
+        <%= f.label :name %>
+        <br/>
+        <%= f.text_field :name %>
+      </div>
+      <div class="actions">
+        <%= f.submit "Create Student" %>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Actions -->
+  <div style="display: flex; gap: 1rem; justify-content: center; padding: 1rem 0;">
+    <%= link_to "✏️ Edit Project", edit_ps3_project_path(@ps3_project), style: "background: linear-gradient(135deg, #88c999 0%, #ffb347 100%); color: white; padding: 0.75rem 1.5rem; text-decoration: none; border-radius: 6px; font-weight: 500; box-shadow: 0 2px 8px rgba(136, 201, 153, 0.3);" %>
+    <%= link_to "← Back to Projects", ps3_projects_path, style: "background: #78909c; color: white; padding: 0.75rem 1.5rem; text-decoration: none; border-radius: 6px; font-weight: 500;" %>
+    <%= button_to "🗑️ Delete Project", @ps3_project, method: :delete, data: { confirm: "Are you sure you want to delete this project?" }, style: "background: #e53935; color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 6px; cursor: pointer; font-weight: 500;" %>
+  </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<nav style="background: linear-gradient(135deg, #88c999 0%, #ffb347 100%); padding: 1rem; margin-bottom: 2rem; border-radius: 8px;">
+  <div style="display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto;">
+    <div>
+      <h2 style="color: white; margin: 0; font-size: 1.5rem;">
+        <%= link_to "🎓 Project Tracker", ps3_path, style: "color: white; text-decoration: none;" %>
+      </h2>
+      <p style="color: rgba(255,255,255,0.8); margin: 0.25rem 0 0 0; font-size: 0.9rem;">Problem Set 3 - User Acceptance Testing</p>
+    </div>
+    <div style="display: flex; gap: 1rem; align-items: center;">
+      <%= link_to "← Back to Main Page", root_path, style: "color: white; text-decoration: none; padding: 0.5rem 1rem; background: rgba(255,255,255,0.2); border-radius: 6px; transition: all 0.3s;" %>
+      <%= link_to "Projects", ps3_projects_path, style: "color: white; text-decoration: none; padding: 0.5rem 1rem; background: rgba(255,255,255,0.2); border-radius: 6px; transition: all 0.3s;" %>
+      <%= link_to "Students", ps3_students_path, style: "color: white; text-decoration: none; padding: 0.5rem 1rem; background: rgba(255,255,255,0.2); border-radius: 6px; transition: all 0.3s;" %>
+      <% if user_signed_in? %>
+        <span style="color: rgba(255,255,255,0.9); font-size: 0.9rem;">👤 <%= current_user.email %></span>
+        <%= button_to "Logout", destroy_user_session_path, method: :delete, style: "color: white; background: rgba(255,0,0,0.5); border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-size: 0.9rem;" %>
+      <% end %>
+    </div>
+  </div>
+</nav>
+

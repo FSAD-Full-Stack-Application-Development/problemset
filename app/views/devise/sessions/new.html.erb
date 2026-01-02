@@ -1,0 +1,46 @@
+<div style="min-height: 100vh; background: linear-gradient(135deg, #a8e6cf 0%, #ffd3a5 100%); display: flex; align-items: center; justify-content: center; padding: 2rem;">
+  <div style="max-width: 450px; width: 100%; background: white; border-radius: 12px; padding: 3rem; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
+    <div style="text-align: center; margin-bottom: 2rem;">
+      <h2 style="color: #2d5016; margin: 0 0 0.5rem 0; font-size: 2rem;">Welcome Back</h2>
+      <p style="color: #666; margin: 0;">Sign in to access Problem Set 3</p>
+    </div>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div style="margin-bottom: 1.5rem;">
+        <%= f.label :email, "Email Address", style: "display: block; color: #333; font-weight: 500; margin-bottom: 0.5rem;" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", style: "width: 100%; padding: 0.875rem; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem; transition: border-color 0.2s;", placeholder: "teacher@example.com" %>
+      </div>
+
+      <div style="margin-bottom: 1.5rem;">
+        <%= f.label :password, "Password", style: "display: block; color: #333; font-weight: 500; margin-bottom: 0.5rem;" %>
+        <%= f.password_field :password, autocomplete: "current-password", style: "width: 100%; padding: 0.875rem; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem; transition: border-color 0.2s;", placeholder: "Enter your password" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div style="margin-bottom: 1.5rem; display: flex; align-items: center;">
+          <%= f.check_box :remember_me, style: "width: 18px; height: 18px; margin-right: 0.5rem; cursor: pointer;" %>
+          <%= f.label :remember_me, "Remember me", style: "color: #666; cursor: pointer; margin: 0;" %>
+        </div>
+      <% end %>
+
+      <div style="margin-bottom: 1.5rem;">
+        <%= f.submit "Log in", style: "width: 100%; background: linear-gradient(135deg, #88c999 0%, #ffb347 100%); color: white; padding: 1rem; border: none; border-radius: 8px; cursor: pointer; font-size: 1.1rem; font-weight: 600; transition: transform 0.2s;" %>
+      </div>
+    <% end %>
+
+    <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #e0e0e0;">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>
+
+<style>
+  input[type="email"]:focus,
+  input[type="password"]:focus {
+    outline: none;
+    border-color: #88c999 !important;
+  }
+  input[type="submit"]:hover {
+    transform: translateY(-2px);
+  }
+</style>

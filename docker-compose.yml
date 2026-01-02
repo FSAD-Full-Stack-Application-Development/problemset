@@ -1,0 +1,26 @@
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: yolanda
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: team_yolanda_sake_production
+    volumes:
+      - db_data:/var/lib/postgresql/data
+  web:
+    build: .
+    #command: bin/rails server -b 0.0.0.0
+    command: bash -c "bundle install && rm -f tmp/pids/server.pid && bin/rails db:create && bin/rails db:migrate && bin/rails server -b 0.0.0.0"
+
+    volumes:
+      - .:/myapp
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_HOST: db
+      DATABASE_USER: yolanda
+      DATABASE_PASSWORD: mypassword
+volumes:
+  db_data:

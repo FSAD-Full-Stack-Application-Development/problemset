@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tech Jokes Database</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #a8e6cf 0%, #ffd3a5 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px 30px 50px 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e8f5e8;
+        }
+        .header h1 {
+            color: #2d5016;
+            margin-bottom: 10px;
+        }
+        .nav-link {
+            color: #88c999;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .nav-link:hover {
+            color: #cc7a00;
+        }
+        .search-section {
+            background: #f8fff8;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border: 2px solid #e8f5e8;
+        }
+        .form-section {
+            background: #fffaf7;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border: 2px solid #fff2e6;
+        }
+        .jokes-section {
+            margin-top: 30px;
+        }
+        .category-group {
+            margin-bottom: 30px;
+            border: 1px solid #e8f5e8;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .category-header {
+            background: linear-gradient(135deg, #88c999 0%, #ffb347 100%);
+            color: white;
+            padding: 15px 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .joke-item {
+            padding: 15px 50px 15px 20px;
+            border-bottom: 1px solid #f0f0f0;
+            position: relative;
+        }
+        .joke-item:last-child {
+            border-bottom: none;
+        }
+        .joke-text {
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            color: #333;
+            font-style: italic;
+        }
+        .joke-author {
+            color: #666;
+            font-size: 0.9em;
+        }
+        .joke-timestamp {
+            color: #888;
+            font-size: 0.8em;
+            margin-top: 5px;
+            font-style: normal;
+            background: #f8f9fa;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            border-left: 3px solid #88c999;
+        }
+        .kill-joke-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .kill-joke-btn:hover {
+            background: #c82333;
+        }
+        .erase-personalization {
+            background: #fff3cd !important;
+            border: 2px solid #ffeaa7;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .erase-personalization .btn-warning {
+            background: #ffc107;
+            color: #212529;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        .erase-personalization .btn-warning:hover {
+            background: #e0a800;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #2d5016;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e8f5e8;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .form-control:focus {
+            border-color: #88c999;
+            outline: none;
+            box-shadow: 0 0 5px rgba(136, 201, 153, 0.3);
+        }
+        select.form-control {
+            cursor: pointer;
+        }
+        #new_category_field {
+            background: #f8fff8;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e8f5e8;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #88c999, #ffb347);
+            color: white;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(136, 201, 153, 0.3);
+        }
+        .flash-notice {
+            background: #d4edda;
+            color: #155724;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #c3e6cb;
+        }
+        .flash-error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #f5c6cb;
+        }
+        .error-messages {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #f5c6cb;
+        }
+        .sort-links {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .sort-links a {
+            margin: 0 10px;
+            color: #88c999;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .sort-links a:hover {
+            color: #cc7a00;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 30px 0;
+            gap: 8px;
+        }
+        .pagination .page,
+        .pagination .prev,
+        .pagination .next {
+            margin: 0;
+        }
+        .pagination .page-link,
+        .pagination .page span,
+        .pagination .prev a,
+        .pagination .next a {
+            color: #2d5016;
+            background: white;
+            border: 2px solid #e8f5e8;
+            padding: 10px 16px;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            min-width: 44px;
+            text-align: center;
+            display: inline-block;
+        }
+        .pagination .page-link:hover,
+        .pagination .prev a:hover,
+        .pagination .next a:hover {
+            background: linear-gradient(135deg, #88c999 0%, #a8e6cf 100%);
+            color: white;
+            border-color: #88c999;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(136, 201, 153, 0.3);
+        }
+        .pagination .page.current span {
+            background: linear-gradient(135deg, #88c999 0%, #76b887 100%);
+            color: white;
+            border-color: #88c999;
+            box-shadow: 0 2px 6px rgba(136, 201, 153, 0.4);
+        }
+        .pagination-info {
+            text-align: center;
+            margin-top: 15px;
+            color: #666;
+            font-size: 0.9em;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Tech Jokes Database</h1>
+            <p>
+                <%= link_to "← Back to Main Page", root_path, class: "nav-link" %> | 
+                <%= link_to "Database Architecture", jokes_about_path, class: "nav-link" %>
+            </p>
+        </div>
+
+        <% if flash[:notice] %>
+            <div class="flash-notice"><%= flash[:notice] %></div>
+        <% end %>
+
+        <% if flash[:error] %>
+            <div class="flash-error"><%= flash[:error] %></div>
+        <% end %>
+
+        <% if @has_personalization %>
+            <div class="erase-personalization">
+                <p><strong>You have personalized this database by killing some jokes.</strong></p>
+                <%= button_to "Erase My Personalization", erase_personalization_path, 
+                    method: :post, 
+                    class: "btn-warning",
+                    confirm: "Are you sure? This will make all killed jokes visible again." %>
+            </div>
+        <% end %>
+
+        <!-- Search Section -->
+        <div class="search-section">
+            <h3>Search Jokes</h3>
+            <%= form_with url: search_jokes_path, method: :get, local: true do |form| %>
+                <div style="display: flex; gap: 10px; align-items: end;">
+                    <div style="flex: 1;">
+                        <%= form.label :search, "Search by keyword (in joke or author):" %>
+                        <%= form.text_field :search, value: params[:search], 
+                            placeholder: "Enter keyword...", class: "form-control" %>
+                    </div>
+                    <div>
+                        <%= form.submit "Search", class: "btn btn-primary" %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+
+        <!-- Export/Import Section -->
+        <div style="text-align: center; margin: 20px 0; padding: 15px; background: #f8fff8; border-radius: 8px; border: 1px solid #e8f5e8;">
+            <strong>Data Management:</strong>
+            <%= link_to "Export XML", export_jokes_path(format: :xml), class: "nav-link" %> | 
+            <%= link_to "Export JSON", export_jokes_path(format: :json), class: "nav-link" %>
+        </div>
+
+        <!-- Import Jokes Form -->
+        <div class="form-section">
+            <h3>Import Jokes from Another Server</h3>
+            <%= form_with url: import_jokes_path, method: :post, local: true do |form| %>
+                <div class="form-group">
+                    <%= form.label :import_url, "Server XML Export URL:" %>
+                    <%= form.url_field :import_url, 
+                        placeholder: "https://example.com/ps2/export.xml", 
+                        class: "form-control" %>
+                </div>
+                <div style="text-align: center; margin-top: 15px;">
+                    <%= form.submit "Import Jokes", class: "btn btn-primary" %>
+                </div>
+            <% end %>
+        </div>
+
+        <!-- Add New Joke Form -->
+        <div class="form-section">
+            <h3>Add New Tech Joke</h3>
+            <%= form_with model: @joke, url: jokes_path, local: true do |form| %>
+                <% if @joke.errors.any? %>
+                    <div class="error-messages">
+                        <strong><%= pluralize(@joke.errors.count, "error") %> prohibited this joke from being saved:</strong>
+                        <ul>
+                            <% @joke.errors.full_messages.each do |message| %>
+                                <li><%= message %></li>
+                            <% end %>
+                        </ul>
+                    </div>
+                <% end %>
+
+                <div class="form-group">
+                    <%= form.label :author_name, "Author/Comedian:" %>
+                    <%= form.text_field :author_name, class: "form-control", 
+                        placeholder: "e.g., Anonymous, John Doe" %>
+                </div>
+
+                <div class="form-group">
+                    <%= form.label :category, "Category:" %>
+                    <% existing_categories = Joke.distinct_categories %>
+                    <% if existing_categories.any? %>
+                        <%= form.select :category, 
+                            options_for_select([['Select existing category...', '']] + 
+                                              existing_categories.map { |cat| [cat, cat] } +
+                                              [['➕ Create new category', 'new_category']], 
+                                              @joke.category),
+                            {}, 
+                            { class: "form-control", id: "category_select", 
+                              onchange: "toggleNewCategoryField()" } %>
+                        
+                        <div id="new_category_field" style="margin-top: 10px; display: none;">
+                            <%= form.label :new_category, "New category:" %>
+                            <%= form.text_field :new_category, class: "form-control", 
+                                placeholder: "Enter new category name" %>
+                        </div>
+                        
+                        <p style="font-size: 0.9em; color: #666; margin-top: 5px;">
+                            Select an existing category or choose "New category" to create one.
+                        </p>
+                    <% else %>
+                        <%= form.text_field :category, class: "form-control", 
+                            placeholder: "e.g., Programming, AI, Hardware" %>
+                    <% end %>
+                </div>
+
+                <script>
+                function toggleNewCategoryField() {
+                    const select = document.getElementById('category_select');
+                    const newField = document.getElementById('new_category_field');
+                    
+                    if (select.value === 'new_category') {
+                        newField.style.display = 'block';
+                        // Clear the select value so new category will be used
+                        select.value = '';
+                    } else {
+                        newField.style.display = 'none';
+                        // Clear the new category field
+                        const newCategoryInput = document.querySelector('#joke_new_category');
+                        if (newCategoryInput) newCategoryInput.value = '';
+                    }
+                }
+                </script>
+
+                <div class="form-group">
+                    <%= form.label :quote, "Joke:" %>
+                    <%= form.text_area :quote, rows: 3, class: "form-control", 
+                        placeholder: "Enter your tech joke here..." %>
+                </div>
+
+                <%= form.submit "Add Joke", class: "btn btn-primary" %>
+            <% end %>
+        </div>
+
+        <!-- Sort Links -->
+        <div class="sort-links">
+            <% if params[:sort_by] == "date" %>
+                <%= link_to "Sort by Category", jokes_path(sort_by: :category) %>
+            <% else %>
+                <%= link_to "Sort by Date", jokes_path(sort_by: :date) %>
+            <% end %>
+        </div>
+
+        <!-- Display Jokes -->
+        <div class="jokes-section">
+            <h3>All Tech Jokes (<%= @jokes.total_count %> total, showing <%= @jokes.count %> per page)</h3>
+            
+            <% if @jokes.any? %>
+                <% if params[:sort_by] == "date" %>
+                    <!-- Sort by Date -->
+                    <div class="category-group">
+                        <div class="category-header">All Jokes (by Date Added)</div>
+                        <% @jokes.each do |joke| %>
+                            <div class="joke-item">
+                                <%= button_to "×", kill_joke_path(joke.id), 
+                                    method: :post, 
+                                    class: "kill-joke-btn", 
+                                    title: "Kill this joke",
+                                    params: { 
+                                        search: params[:search], 
+                                        sort_by: params[:sort_by], 
+                                        page: params[:page] 
+                                    },
+                                    confirm: "Kill this joke? It will no longer appear for you." %>
+                                <div class="joke-text">"<%= joke.quote %>"</div>
+                                <div class="joke-author">
+                                    — <strong><%= joke.author_name %></strong>
+                                    <% if joke.category.present? %>
+                                        | Category: <em><%= joke.category %></em>
+                                    <% end %>
+                                </div>
+                                <div class="joke-timestamp" title="<%= joke.created_at.strftime("%B %d, %Y at %I:%M %p") %>">
+                                    🕒 <%= time_ago_in_words(joke.created_at) %> ago
+                                </div>
+                            </div>
+                        <% end %>
+                    </div>
+                <% else %>
+                    <!-- Sort by Category (default) -->
+                    <% @jokes.group_by(&:category).sort_by { |category, _| category || "Uncategorized" }.each do |category, jokes| %>
+                        <div class="category-group">
+                            <div class="category-header">
+                                <%= category.present? ? category : "Uncategorized" %> 
+                                (<%= jokes.count %>)
+                            </div>
+                            <% jokes.each do |joke| %>
+                                <div class="joke-item">
+                                    <%= button_to "×", kill_joke_path(joke.id), 
+                                        method: :post, 
+                                        class: "kill-joke-btn", 
+                                        title: "Kill this joke",
+                                        params: { 
+                                            search: params[:search], 
+                                            sort_by: params[:sort_by], 
+                                            page: params[:page] 
+                                        },
+                                        confirm: "Kill this joke? It will no longer appear for you." %>
+                                    <div class="joke-text">"<%= joke.quote %>"</div>
+                                    <div class="joke-author">— <strong><%= joke.author_name %></strong></div>
+                                </div>
+                            <% end %>
+                        </div>
+                    <% end %>
+                <% end %>
+            <% else %>
+                <div style="text-align: center; padding: 40px; color: #666;">
+                    <p>No jokes found. Be the first to add a tech joke!</p>
+                </div>
+            <% end %>
+
+            <!-- Pagination Controls -->
+            <% if @jokes.respond_to?(:total_pages) && @jokes.total_pages > 1 %>
+                <div style="margin-top: 40px;">
+                    <div class="pagination">
+                        <%= paginate @jokes %>
+                    </div>
+                    <div class="pagination-info">
+                        <strong>Page <%= @jokes.current_page %> of <%= @jokes.total_pages %></strong>
+                        <br>
+                        Showing <%= @jokes.count %> of <%= @jokes.total_count %> total jokes
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</body>
+</html>

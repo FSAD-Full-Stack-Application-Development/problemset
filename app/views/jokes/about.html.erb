@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Database Architecture - Tech Jokes</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #a8e6cf 0%, #ffd3a5 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e8f5e8;
+        }
+        .nav-link {
+            color: #88c999;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .nav-link:hover {
+            color: #cc7a00;
+        }
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8fff8;
+            border-radius: 10px;
+            border: 2px solid #e8f5e8;
+        }
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        .highlight {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+            margin: 15px 0;
+        }
+        h3 {
+            color: #2d5016;
+            border-bottom: 2px solid #e8f5e8;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Database Architecture & Primary Keys</h1>
+            <p>
+                <%= link_to "← Back to Tech Jokes", ps2_path, class: "nav-link" %> | 
+                <%= link_to "← Back to Main Page", root_path, class: "nav-link" %>
+            </p>
+        </div>
+
+        <div class="section">
+            <h3>How Rails & ActiveRecord Handle Auto-Incrementing Primary Keys</h3>
+            
+            <p><strong>In our Tech Jokes Database, each joke gets a unique ID automatically.</strong> Here's how it works:</p>
+
+            <h4>1. Database Level (PostgreSQL Sequences)</h4>
+            <p>PostgreSQL uses <strong>SEQUENCE objects</strong> to generate unique, auto-incrementing integers:</p>
+            
+            <div class="code-block">-- PostgreSQL automatically creates this sequence for our jokes table:
+CREATE SEQUENCE jokes_id_seq;
+
+-- The jokes table uses this sequence for the primary key:
+CREATE TABLE jokes (
+    id integer NOT NULL DEFAULT nextval('jokes_id_seq'::regclass),
+    author_name character varying,
+    category character varying,
+    quote text,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    CONSTRAINT jokes_pkey PRIMARY KEY (id)
+);</div>
+
+            <h4>2. Rails Migration Level</h4>
+            <p>When we generated our Joke model, Rails automatically created this migration:</p>
+            
+            <div class="code-block">class CreateJokes < ActiveRecord::Migration[7.1]
+  def change
+    create_table :jokes do |t|  # ← This creates the auto-incrementing 'id' column
+      t.string :author_name
+      t.string :category  
+      t.text :quote
+      t.timestamps        # ← Creates created_at and updated_at
+    end
+  end
+end</div>
+
+            <h4>3. ActiveRecord ORM Level</h4>
+            <p>Our Joke model automatically gets the ID without us specifying it:</p>
+            
+            <div class="code-block"># When we create a new joke:
+joke = Joke.create!(
+  author_name: "Anonymous",
+  category: "Programming", 
+  quote: "Why do programmers prefer dark mode? Because light attracts bugs."
+)
+
+# Rails/PostgreSQL automatically assigns an ID:
+puts joke.id  # → 1, 2, 3, 4... (automatically incremented)</div>
+
+            <div class="highlight">
+                <strong>Key Benefits:</strong>
+                <ul>
+                    <li><strong>Uniqueness:</strong> Each joke gets a guaranteed unique identifier</li>
+                    <li><strong>Performance:</strong> Primary key indexing makes queries fast</li>
+                    <li><strong>Relationships:</strong> Other tables can reference jokes by ID</li>
+                    <li><strong>Concurrency:</strong> Multiple users can add jokes simultaneously without conflicts</li>
+                </ul>
+            </div>
+
+            <h4>4. Current Database State</h4>
+            <p>Our jokes table currently contains:</p>
+            <div class="code-block">Total Jokes: <%= Joke.count %>
+Next ID will be: <%= Joke.count + 1 %>
+ID Range: <%= Joke.minimum(:id) %> to <%= Joke.maximum(:id) %></div>
+        </div>
+
+        <div class="section">
+            <h3>Sequence Object Details</h3>
+            <p>PostgreSQL sequences provide:</p>
+            <ul>
+                <li><strong>Atomic Operations:</strong> Thread-safe ID generation</li>
+                <li><strong>Persistence:</strong> Survives database restarts</li>
+                <li><strong>Customization:</strong> Can set start value, increment, max value</li>
+                <li><strong>Performance:</strong> Pre-allocates blocks of IDs for speed</li>
+            </ul>
+            
+            <div class="highlight">
+                <strong>Production Advantage:</strong> This architecture scales to millions of jokes while maintaining data integrity and performance.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

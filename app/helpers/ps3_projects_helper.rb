@@ -1,0 +1,2 @@
+module Ps3ProjectsHelper
+end

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Problem Set 1: Basics</title>
+</head>
+
+<body>
+  <h1>Problem Set 1: Basics</h1>
+  <p style="margin-bottom: 20px;">
+    <%= link_to "← Back to Main Page", root_path, style: "color: #88c999; text-decoration: none; font-weight: 500;" %>
+  </p>
+
+  <!-- Main page wrapper -->
+  <div class="wrapper">
+    <h2>MIT Technology Review – AI</h2>
+<ul>
+  <% @mit_news.each do |news| %>
+    <li><a href="<%= news[:url] %>" target="_blank"><%= news[:title] %></a></li>
+  <% end %>
+</ul>
+
+<h2>VentureBeat – AI</h2>
+<ul>
+  <% @venturebeat_news.each do |news| %>
+    <li><a href="<%= news[:url] %>" target="_blank"><%= news[:title] %></a></li>
+  <% end %>
+</ul>
+
+  </div>
+  <!-- Debug logs / errors 
+<% if @fetch_logs.present? %>
+  <div style="border:1px solid red; padding:10px; margin-bottom:20px;">
+    <h3>Fetch Logs / Errors</h3>
+    <ul>
+      <% @fetch_logs.each do |log| %>
+        <li><%= log %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+-->
+
+  <!-- Footer with server-side generation time, Rails env, live UTC clock -->
+  <footer>
+    <!-- Server-side page generation timestamp -->
+    <p>Page generated at: <%= @generated_at %></p>
+
+    <!-- Rails environment -->
+    <p>Rails environment: <%= @rails_env %></p>
+
+    <!-- Live UTC clock -->
+    <p>Current UTC time: <span id="utc-clock"></span></p>
+  </footer>
+
+  <!-- Live UTC clock JavaScript -->
+  <script>
+    function updateUTC() {
+      const now = new Date();
+      const yyyy = now.getUTCFullYear();
+      const mm   = String(now.getUTCMonth() + 1).padStart(2, '0');
+      const dd   = String(now.getUTCDate()).padStart(2, '0');
+      const hh   = String(now.getUTCHours()).padStart(2, '0');
+      const min  = String(now.getUTCMinutes()).padStart(2, '0');
+      const ss   = String(now.getUTCSeconds()).padStart(2, '0');
+
+      document.getElementById("utc-clock").textContent =
+        `${yyyy}-${mm}-${dd} ${hh}:${min}:${ss} UTC`;
+    }
+    setInterval(updateUTC, 1000);
+    updateUTC(); // Initial call
+  </script>
+</body>
+</html>

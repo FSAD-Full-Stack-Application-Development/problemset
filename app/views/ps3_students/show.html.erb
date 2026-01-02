@@ -1,0 +1,45 @@
+<div style="min-height: 100vh; background: linear-gradient(135deg, #a8e6cf 0%, #ffd3a5 100%);">
+  <%= render "ps3_projects/navigation" %>
+
+  <div style="max-width: 800px; margin: 0 auto; padding: 0 2rem 2rem 2rem;">
+  <% if notice %>
+    <div style="background: #d4edda; color: #155724; padding: 1rem; border-radius: 6px; margin-bottom: 1.5rem; border: 1px solid #c3e6cb;">
+      <%= notice %>
+    </div>
+  <% end %>
+
+  <div style="background: white; border-radius: 8px; padding: 2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+    <h1 style="color: #2d5016; margin-top: 0; margin-bottom: 1.5rem;"><%= @ps3_student.name %></h1>
+    
+    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 6px; margin-bottom: 2rem;">
+      <div style="margin-bottom: 1rem;">
+        <strong style="color: #666;">Student ID:</strong>
+        <span style="color: #333; margin-left: 1rem;"><%= @ps3_student.studentid %></span>
+      </div>
+    </div>
+
+    <h2 style="color: #333; margin-bottom: 1rem;">Assigned Projects</h2>
+    <% if @ps3_student.ps3_projects.any? %>
+      <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 6px;">
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <% @ps3_student.ps3_projects.each do |project| %>
+            <li style="padding: 0.75rem 0; border-bottom: 1px solid #e0e0e0;">
+              <%= link_to project.name, project, style: "color: #88c999; text-decoration: none; font-weight: 500;" %>
+              <div style="color: #999; font-size: 0.9rem; margin-top: 0.25rem;"><%= project.url %></div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% else %>
+      <p style="color: #999; font-style: italic;">Not assigned to any projects yet</p>
+    <% end %>
+
+    <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+      <%= link_to "Edit", edit_ps3_student_path(@ps3_student), style: "background: linear-gradient(135deg, #88c999 0%, #ffb347 100%); color: white; padding: 0.75rem 1.5rem; text-decoration: none; border-radius: 6px; font-weight: 500; box-shadow: 0 2px 8px rgba(136, 201, 153, 0.3);" %>
+      <%= link_to "Back to Students", ps3_students_path, style: "background: #78909c; color: white; padding: 0.75rem 1.5rem; text-decoration: none; border-radius: 6px; font-weight: 500;" %>
+      <%= button_to "Delete", @ps3_student, method: :delete, data: { confirm: "Are you sure?" }, form: { style: "display: inline;" }, style: "background: #e53935; color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 6px; cursor: pointer; font-weight: 500;" %>
+    </div>
+  </div>
+  </div>
+</div>
+

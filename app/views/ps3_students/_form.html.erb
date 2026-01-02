@@ -1,0 +1,28 @@
+<%= form_with(model: ps3_student) do |form| %>
+  <% if ps3_student.errors.any? %>
+    <div style="background: #f8d7da; color: #721c24; padding: 1rem; border-radius: 6px; margin-bottom: 1.5rem; border: 1px solid #f5c6cb;">
+      <h3 style="margin: 0 0 0.5rem 0;"><%= pluralize(ps3_student.errors.count, "error") %> prohibited this student from being saved:</h3>
+      <ul style="margin: 0; padding-left: 1.5rem;">
+        <% ps3_student.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div style="margin-bottom: 1.5rem;">
+    <%= form.label :studentid, "Student ID", style: "display: block; color: #333; font-weight: 500; margin-bottom: 0.5rem;" %>
+    <%= form.text_field :studentid, style: "width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 6px; font-size: 1rem;", placeholder: "e.g., S12345678" %>
+  </div>
+
+  <div style="margin-bottom: 1.5rem;">
+    <%= form.label :name, "Full Name", style: "display: block; color: #333; font-weight: 500; margin-bottom: 0.5rem;" %>
+    <%= form.text_field :name, style: "width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 6px; font-size: 1rem;", placeholder: "e.g., John Doe" %>
+  </div>
+
+  <div style="display: flex; gap: 1rem;">
+    <%= form.submit "Create Student", style: "background: linear-gradient(135deg, #88c999 0%, #ffb347 100%); color: white; padding: 0.75rem 2rem; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; font-weight: 500; box-shadow: 0 2px 8px rgba(136, 201, 153, 0.3); transition: all 0.2s;" %>
+    <%= link_to "Cancel", ps3_students_path, style: "background: #78909c; color: white; padding: 0.75rem 2rem; text-decoration: none; border-radius: 6px; font-weight: 500; display: inline-block; transition: all 0.2s;" %>
+  </div>
+<% end %>
+
